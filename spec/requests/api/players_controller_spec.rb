@@ -5,14 +5,14 @@ module API
     describe 'GET /players' do
       it 'retrieves all the requested player' do
         # arrange
-        Player.create!(first_name: 'John', 
-                       last_name: 'Doe', 
-                       email: 'john.doe@example.com', 
-                       age: 25, 
+        Player.create!(first_name: 'John',
+                       last_name: 'Doe',
+                       email: 'john.doe@example.com',
+                       age: 25,
                        position: 'goalkeeper')
 
         # act
-        get api_players_url,
+        get api_players_path,
             as: :json
 
         # assert
