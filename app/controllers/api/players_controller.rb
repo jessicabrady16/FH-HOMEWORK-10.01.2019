@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# player controller methods
 
 module API
   class PlayersController < ApplicationController
@@ -12,6 +13,7 @@ module API
     # GET /api/players/1
     def show
       return render_not_found unless @player
+
       render_ok_json(@player)
     end
 
@@ -19,12 +21,14 @@ module API
     def create
       new_player = Player.create(player_params)
         return render_success(:created)  if new_player.valid?
+
         render_not_found
     end
 
     # PATCH/PUT /api/players/1
     def update
       return render_not_found unless @player
+
       @player.update(player_params)
       return render_not_found unless @player.valid?
 
@@ -33,8 +37,8 @@ module API
 
     # DELETE /api/players/1
     def destroy
-
       return render_not_found unless @player
+
       @player.destroy
       render_ok_json(@player)
     end
@@ -43,9 +47,8 @@ module API
 
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player =  Player.find_by(id: params[:id])
+      @player = Player.find_by(id: params[:id])
     end
-
 
     # Only allow a trusted parameter "white list" through.
     def player_params
